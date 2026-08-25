@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
   <title>SuMin | Neuroimaging Portfolio</title>
   <style>
     body {
@@ -35,13 +36,14 @@
       font-size: 0.95rem;
       cursor: pointer;
     }
-    nav a:hover, nav a.active { color: #b91c1c; } /* 강조 레드 색상 */
+    nav a:hover, nav a.active { color: #b91c1c; }
 
     /* 메인 영역 */
     .container {
-      max-width: 800px; /* 전체 본문 상자 폭 고정 */
-      margin: 0 auto; /* 가운데 정렬 */
+      max-width: 800px;
+      margin: 0 auto;
       padding: 40px 20px;
+      box-sizing: border-box;
     }
     h1.hero-title {
       font-size: 2.2rem;
@@ -55,20 +57,36 @@
       margin-bottom: 30px;
     }
 
-    /* 탭 세션 기본 숨김 설정 (클릭해야만 보이도록) */
+    /* 탭 세션 기본 숨김 설정 */
     .tab-content {
       display: none;
+      width: 100%;
     }
     .tab-content.active {
-      display: block; /* 선택된 메뉴만 화면에 표시 */
+      display: block;
     }
 
+    /* 소제목 및 밑줄 (고정된 깔끔한 가로선) */
     h2.section-title {
       font-size: 1.6rem;
       border-bottom: 2px solid #111;
       padding-bottom: 8px;
       margin-bottom: 25px;
-      display: inline-block; /* 선이 글자 길이에 딱 맞게 멈춤 */
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* 자격증 들여쓰기 세로 줄 맞춤 스타일 */
+    .cert-container {
+      display: flex;
+      align-items: flex-start;
+    }
+    .cert-label {
+      white-space: nowrap;
+    }
+    .cert-list {
+      display: flex;
+      flex-direction: column;
     }
 
     /* STUDY 연도별 버튼 스타일 */
@@ -92,7 +110,7 @@
       border-color: #b91c1c;
     }
 
-    /* 연도별 내용 숨김 설정 */
+    /* 연도별 내용 설정 */
     .year-content {
       display: none;
       background: #fafafa;
@@ -164,7 +182,7 @@
     <h1 class="hero-title">Cognitive & Affective Neuroscience</h1>
     <p class="hero-sub">Pain & Brain Biomarker Researcher</p>
 
-    <!-- 1. ABOUT (기본으로 보이는 첫 화면) -->
+    <!-- 1. ABOUT -->
     <div id="about" class="tab-content active">
       <h2 class="section-title">ABOUT ME</h2>
       <p><strong>SuMin</strong> is an aspiring neuroimaging researcher focusing on pain and emotional brain processes.</p>
@@ -172,12 +190,22 @@
       <br>
       <p><strong>Education & Credentials:</strong></p>
       <ul>
-        <li>대학 전공: 심리학 학부 재학중 (4-1) </li>
-        <li>보유 자격증: 사회조사분석사 2급<br> ADsP (Advanced Data Analytics Semi-Professional)<br> 컴퓨터활용능력 2급<br> SQLD (SQLD : SQL Developer) </li>
+        <li>대학 전공: 심리학 학부 재학중 (4-1)</li>
+        <li>
+          <div class="cert-container">
+            <span class="cert-label">보유 자격증:&nbsp;</span>
+            <div class="cert-list">
+              <span>사회조사분석사 2급</span>
+              <span>ADsP (Advanced Data Analytics Semi-Professional)</span>
+              <span>컴퓨터활용능력 2급</span>
+              <span>SQLD (SQLD : SQL Developer)</span>
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
 
-    <!-- 2. STUDY (연도별 클릭 탭) -->
+    <!-- 2. STUDY -->
     <div id="study" class="tab-content">
       <h2 class="section-title">STUDY & LOG</h2>
       <p>학업 및 연구 관련 성장 기록입니다. 연도를 클릭하세요.</p>
@@ -212,16 +240,15 @@
       <div id="y2024" class="year-content">
         <ul class="study-list">
           <li><span class="study-date">2024.11</span> 사회조사분석사 2급 자격증 취득</li>
-          <li><span class="study-date">2024.10-12</span> 교내 중국인 유학생 멘토링 </li>
+          <li><span class="study-date">2024.10-12</span> 교내 중국인 유학생 멘토링</li>
         </ul>
       </div>
-    </div>
 
       <!-- 2023년 내용 -->
       <div id="y2023" class="year-content">
         <ul class="study-list">
-          <li><span class="study-date">2023.12</span> 청소년푸른성장대상 수상 (여성가족부장관상) </li>
-          <li><span class="study-date">2023.11</span> 학교 밖 청소년 지원사업 우수상 수상 (여성가족부장관상) </li>
+          <li><span class="study-date">2023.12</span> 청소년푸른성장대상 수상 (여성가족부장관상)</li>
+          <li><span class="study-date">2023.11</span> 학교 밖 청소년 지원사업 우수상 수상 (여성가족부장관상)</li>
         </ul>
       </div>
     </div>
@@ -230,7 +257,7 @@
     <div id="research" class="tab-content">
       <h2 class="section-title">RESEARCH & PROJECTS</h2>
       <div class="project-card">
-        <h3>[EEG Analysis] 파이썬 MNE를 활용한 휴지기 뇌파 알파 파워 분석 (미정) </h3>
+        <h3>[EEG Analysis] 파이썬 MNE를 활용한 휴지기 뇌파 알파 파워 분석 (미정)</h3>
         <p><strong>Background:</strong> 만성 통증 환자에게서 알파파 감소 현상이 나타난다는 기존 연구를 바탕으로 Open EEG Dataset을 검증해 본 프로젝트입니다.</p>
         <p><strong>Tools:</strong> <span class="tag">Python</span> <span class="tag">MNE-Python</span> <span class="tag">Pandas</span></p>
       </div>
@@ -259,24 +286,18 @@
     &copy; 2026 SuMin. Neuroimaging Research Portfolio.
   </footer>
 
-  <!-- 화면 전환 기능을 위한 자바스크립트 코드 -->
   <script>
-    // 상단 메뉴 탭 전환 함수
     function openTab(tabName) {
-      // 모든 탭 내용 숨기기
       const contents = document.querySelectorAll('.tab-content');
       contents.forEach(content => content.classList.remove('active'));
 
-      // 모든 메뉴 버튼 비활성화
       const navLinks = document.querySelectorAll('nav a');
       navLinks.forEach(link => link.classList.remove('active'));
 
-      // 클릭한 탭만 보이기
       document.getElementById(tabName).classList.add('active');
       document.getElementById('nav-' + tabName).classList.add('active');
     }
 
-    // STUDY 안의 연도별 탭 전환 함수
     function openYear(yearId) {
       const yearContents = document.querySelectorAll('.year-content');
       yearContents.forEach(content => content.classList.remove('active'));
