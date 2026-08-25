@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SuMin | Neuroimaging Portfolio</title>
   <style>
-    /* 코코안 랩 특유의 깔끔하고 정갈한 스타일링 */
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       color: #333;
@@ -14,8 +13,8 @@
       padding: 0;
       background-color: #ffffff;
     }
-    
-    /* 상단 메뉴바 (Nav) */
+
+    /* 상단 메뉴바 */
     header {
       display: flex;
       justify-content: space-between;
@@ -27,76 +26,104 @@
       background: white;
       z-index: 1000;
     }
-    .logo { font-size: 1.4rem; font-weight: bold; color: #111; }
+    .logo { font-size: 1.4rem; font-weight: bold; color: #111; cursor: pointer; }
     nav a {
       margin-left: 20px;
       text-decoration: none;
       color: #555;
       font-weight: 600;
       font-size: 0.95rem;
+      cursor: pointer;
     }
-    nav a:hover { color: #b91c1c; } /* 코코안 랩 상징 레드 포인트 */
+    nav a:hover, nav a.active { color: #b91c1c; } /* 강조 레드 색상 */
 
-    /* 메인 세션 영역 */
+    /* 메인 영역 */
     .container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 50px 20px;
-    }
-    section {
-      padding-top: 60px;
-      margin-top: -30px;
-      margin-bottom: 60px;
+      padding: 40px 20px;
     }
     h1.hero-title {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     p.hero-sub {
       text-align: center;
       color: #666;
-      font-size: 1.2rem;
-      margin-bottom: 40px;
-    }
-    h2.section-title {
-      font-size: 1.8rem;
-      border-bottom: 2px solid #111;
-      padding-bottom: 10px;
+      font-size: 1.1rem;
       margin-bottom: 30px;
     }
 
-    /* 년도별 NEWS 타임라인 스타일 */
-    .news-year {
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: #b91c1c;
-      margin-top: 25px;
-      margin-bottom: 10px;
-      border-left: 4px solid #b91c1c;
-      padding-left: 10px;
+    /* 탭 세션 기본 숨김 설정 (클릭해야만 보이도록) */
+    .tab-content {
+      display: none;
     }
-    .news-list {
-      list-style: none;
-      padding-left: 15px;
+    .tab-content.active {
+      display: block; /* 선택된 메뉴만 화면에 표시 */
     }
-    .news-list li {
-      margin-bottom: 12px;
-      position: relative;
+
+    h2.section-title {
+      font-size: 1.6rem;
+      border-bottom: 2px solid #111;
+      padding-bottom: 8px;
+      margin-bottom: 25px;
     }
-    .news-date {
+
+    /* STUDY 연도별 버튼 스타일 */
+    .year-buttons {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+    }
+    .year-btn {
+      padding: 6px 16px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+      border-radius: 20px;
       font-weight: bold;
       color: #555;
+      cursor: pointer;
+    }
+    .year-btn:hover, .year-btn.active {
+      background: #b91c1c;
+      color: white;
+      border-color: #b91c1c;
+    }
+
+    /* 연도별 내용 숨김 설정 */
+    .year-content {
+      display: none;
+      background: #fafafa;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #b91c1c;
+    }
+    .year-content.active {
+      display: block;
+    }
+
+    .study-list {
+      list-style: none;
+      padding-left: 10px;
+      margin: 0;
+    }
+    .study-list li {
+      margin-bottom: 10px;
+    }
+    .study-date {
+      font-weight: bold;
+      color: #b91c1c;
       display: inline-block;
       width: 90px;
     }
 
-    /* 프로젝트 카스트 스타일 */
+    /* 프로젝트 카드 스타일 */
     .project-card {
       background: #f9fafb;
       border: 1px solid #e5e7eb;
       border-radius: 8px;
-      padding: 25px;
+      padding: 20px;
       margin-bottom: 20px;
     }
     .tag {
@@ -112,89 +139,144 @@
       padding: 30px;
       border-top: 1px solid #eee;
       color: #888;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      margin-top: 50px;
     }
   </style>
 </head>
 <body>
 
-  <!-- 상단 메뉴바 (클릭시 해당 위치로 스무스하게 이동) -->
+  <!-- 상단 메뉴바 -->
   <header>
-    <div class="logo">SuMin Portfolio</div>
+    <div class="logo" onclick="openTab('about')">SuMin Portfolio</div>
     <nav>
-      <a href="#about">ABOUT</a>
-      <a href="#news">NEWS</a>
-      <a href="#research">RESEARCH</a>
-      <a href="#skills">SKILLS</a>
-      <a href="#contact">CONTACT</a>
+      <a id="nav-about" class="active" onclick="openTab('about')">ABOUT</a>
+      <a id="nav-study" onclick="openTab('study')">STUDY</a>
+      <a id="nav-research" onclick="openTab('research')">RESEARCH</a>
+      <a id="nav-skills" onclick="openTab('skills')">SKILLS</a>
+      <a id="nav-contact" onclick="openTab('contact')">CONTACT</a>
     </nav>
   </header>
 
   <div class="container">
 
-    <!-- 메인 타이틀 -->
     <h1 class="hero-title">Cognitive & Affective Neuroscience</h1>
     <p class="hero-sub">Pain & Brain Biomarker Researcher</p>
 
-    <!-- 1. ABOUT -->
-    <section id="about">
-      <h2 class="section-title">ABOUT</h2>
+    <!-- 1. ABOUT (기본으로 보이는 첫 화면) -->
+    <div id="about" class="tab-content active">
+      <h2 class="section-title">ABOUT ME</h2>
       <p><strong>SuMin</strong> is an aspiring neuroimaging researcher focusing on pain and emotional brain processes.</p>
       <p>심리학을 전공하며 인간이 느끼는 정서와 통증의 주관적 경험에 깊은 흥미를 갖게 되었습니다. 비침습적 뇌자극(TMS/tDCS)과 뇌파(EEG)/fMRI 데이터를 결합하여 만성 통증 및 우울증 환자의 객관적 뇌 바이오마커를 탐구하는 연구자를 목표로 하고 있습니다.</p>
-    </section>
-
-    <!-- 2. NEWS (년도별 정리) -->
-    <section id="news">
-      <h2 class="section-title">NEWS</h2>
-      
-      <div class="news-year">2026</div>
-      <ul class="news-list">
-        <li><span class="news-date">Mar 2026</span> 깃허브 포트폴리오 웹사이트 정식 오픈</li>
-        <li><span class="news-date">Feb 2026</span> SQLD 자격증 취득 및 파이썬 EEG 분석 스터디 완료</li>
+      <br>
+      <p><strong>Education & Credentials:</strong></p>
+      <ul>
+        <li>대학 전공: 심리학 학사</li>
+        <li>보유 자격증: 사회조사분석사 2급, ADsP, SQLD, 컴퓨터활용능력 2급</li>
       </ul>
+    </div>
 
-      <div class="news-year">2025</div>
-      <ul class="news-list">
-        <li><span class="news-date">Dec 2025</span> 심리학 학사 학위 취득 예정 / 학술 프로젝트 진행</li>
-        <li><span class="news-date">Aug 2025</span> ADsP (데이터분석 준전문가) 자격 취득</li>
-      </ul>
-    </section>
+    <!-- 2. STUDY (연도별 클릭 탭) -->
+    <div id="study" class="tab-content">
+      <h2 class="section-title">STUDY & LOG</h2>
+      <p>학업 및 연구 관련 성장 기록입니다. 연도를 클릭하세요.</p>
 
-    <!-- 3. RESEARCH & PROJECTS -->
-    <section id="research">
+      <!-- 연도 선택 버튼 -->
+      <div class="year-buttons">
+        <button class="year-btn active" onclick="openYear('y2026')">2026</button>
+        <button class="year-btn" onclick="openYear('y2025')">2025</button>
+        <button class="year-btn" onclick="openYear('y2024')">2024</button>
+      </div>
+
+      <!-- 2026년 내용 -->
+      <div id="y2026" class="year-content active">
+        <ul class="study-list">
+          <li><span class="study-date">2026.03</span> 깃허브 개인 학술 포트폴리오 웹사이트 구축</li>
+          <li><span class="study-date">2026.02</span> SQLD 자격증 취득 및 파이썬 MNE-Python 튜토리얼 완료</li>
+          <li><span class="study-date">2026.01</span> 만성 통증 환자 Resting-state EEG 데이터 시각화 스터디</li>
+        </ul>
+      </div>
+
+      <!-- 2025년 내용 -->
+      <div id="y2025" class="year-content">
+        <ul class="study-list">
+          <li><span class="study-date">2025.12</span> 심리학 학사 졸업 / 데이터 분석 실습 진행</li>
+          <li><span class="study-date">2025.08</span> ADsP (데이터분석 준전문가) 자격증 취득</li>
+          <li><span class="study-date">2025.05</span> 비침습적 뇌자극(TMS/tDCS) 관련 논문 스터디 참여</li>
+        </ul>
+      </div>
+
+      <!-- 2024년 내용 -->
+      <div id="y2024" class="year-content">
+        <ul class="study-list">
+          <li><span class="study-date">2024.11</span> 사회조사분석사 2급 자격증 취득</li>
+          <li><span class="study-date">2024.09</span> 파이썬(Python) 기초 프로그래밍 및 통계학 입문</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3. RESEARCH -->
+    <div id="research" class="tab-content">
       <h2 class="section-title">RESEARCH & PROJECTS</h2>
-      
       <div class="project-card">
         <h3>[EEG Analysis] 파이썬 MNE를 활용한 휴지기 뇌파 알파 파워 분석</h3>
         <p><strong>Background:</strong> 만성 통증 환자에게서 알파파 감소 현상이 나타난다는 기존 연구를 바탕으로 Open EEG Dataset을 검증해 본 프로젝트입니다.</p>
         <p><strong>Tools:</strong> <span class="tag">Python</span> <span class="tag">MNE-Python</span> <span class="tag">Pandas</span></p>
-        <!-- 이미지 넣고 싶을 때 아래 주석을 풀어 사용하세요 -->
-        <!-- <img src="내이미지.png" style="width:100%; border-radius:6px; margin-top:10px;"> -->
       </div>
-    </section>
+    </div>
 
     <!-- 4. SKILLS -->
-    <section id="skills">
+    <div id="skills" class="tab-content">
       <h2 class="section-title">SKILLS & TOOLS</h2>
       <ul>
         <li><strong>Programming:</strong> Python (Pandas, Seaborn, MNE-Python)</li>
         <li><strong>Data & Stats:</strong> SQL (SQLD 보유), SPSS, R (사회조사분석사 2급)</li>
         <li><strong>Languages:</strong> English (Paper Reading & Translation)</li>
       </ul>
-    </section>
+    </div>
 
     <!-- 5. CONTACT -->
-    <section id="contact">
+    <div id="contact" class="tab-content">
       <h2 class="section-title">CONTACT</h2>
       <p>📧 <strong>Email:</strong> su-min-email@example.com</p>
       <p>💻 <strong>GitHub:</strong> <a href="https://github.com/SuMin-7" target="_blank">github.com/SuMin-7</a></p>
-    </section>
+    </div>
 
   </div>
 
   <footer>
-    &copy; 2026 SuMin. Inspired by COCOAN Lab design.
+    &copy; 2026 SuMin. Neuroimaging Research Portfolio.
   </footer>
+
+  <!-- 화면 전환 기능을 위한 자바스크립트 코드 -->
+  <script>
+    // 상단 메뉴 탭 전환 함수
+    function openTab(tabName) {
+      // 모든 탭 내용 숨기기
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      // 모든 메뉴 버튼 비활성화
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => link.classList.remove('active'));
+
+      // 클릭한 탭만 보이기
+      document.getElementById(tabName).classList.add('active');
+      document.getElementById('nav-' + tabName).classList.add('active');
+    }
+
+    // STUDY 안의 연도별 탭 전환 함수
+    function openYear(yearId) {
+      const yearContents = document.querySelectorAll('.year-content');
+      yearContents.forEach(content => content.classList.remove('active'));
+
+      const yearBtns = document.querySelectorAll('.year-btn');
+      yearBtns.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(yearId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
