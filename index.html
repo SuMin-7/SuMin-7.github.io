@@ -1,19 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <title>수민의 연구 포트폴리오</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수민 | 연구 포트폴리오</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --primary: #2563eb;
+      --accent: #dbeafe;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    header {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid var(--primary);
+    }
+    h1 { margin: 0; color: #0f172a; font-size: 1.8rem; }
+    .subtitle { color: var(--primary); font-weight: 600; margin-top: 5px; }
+    
+    section {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+    }
+    h2 {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+      color: var(--primary);
+      margin-top: 0;
+    }
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 3px;
+    }
+    .project-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+    .project-img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    footer { text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 40px; }
+  </style>
 </head>
 <body>
-  <h1>안녕하세요, 수민의 연구 공간입니다.</h1>
-  <h2>About Me</h2>
-  <p>심리학을 전공하며 정서와 통증의 주관적 경험에 흥미를 갖게 되었습니다.</p>
-  <p>비침습적 뇌자극(TMS/tDCS)과 EEG/fMRI 데이터를 결합하여 만성 통증 및 우울증 환자의 객관적 뇌 바이오마커를 탐구하는 연구자를 목표로 하고 있습니다.</p>
-  
-  <h2>Skills & Tools</h2>
-  <ul>
-    <li>Python (Pandas, Seaborn, MNE-Python)</li>
-    <li>SQL, SPSS, R</li>
-  </ul>
+
+<div class="container">
+
+  <!-- 프로필 섹션 -->
+  <header>
+    <!-- 인터넷 이미지 주소나 깃허브에 올린 사진 파일명을 넣으시면 됩니다 -->
+    <img src="https://via.placeholder.com/150" alt="프로필 이미지" class="profile-img">
+    <h1>수민 (SuMin)</h1>
+    <div class="subtitle">뇌과학 & 통증 바이오마커 연구자 지망생</div>
+    <p style="margin-bottom:0;">학부 전공: 심리학</p>
+  </header>
+
+  <!-- 1. About Me -->
+  <section>
+    <h2>1. About Me</h2>
+    <p>심리학을 전공하며 인간이 느끼는 정서와 통증의 주관적 경험에 깊은 흥미를 갖게 되었습니다. 비침습적 뇌자극(TMS/tDCS)과 뇌파(EEG)/fMRI 데이터를 결합하여 만성 통증 및 우울증 환자의 객관적 뇌 바이오마커를 탐구하는 연구자를 목표로 하고 있습니다.</p>
+    <p><strong>Education & Credentials:</strong></p>
+    <ul>
+      <li>대학 전공: 심리학 학사</li>
+      <li>보유 자격증: 사회조사분석사 2급, ADsP, SQLD, 컴퓨터활용능력 2급</li>
+    </ul>
+  </section>
+
+  <!-- 2. Projects & Research -->
+  <section>
+    <h2>2. Projects & Research</h2>
+    
+    <div class="project-card">
+      <h3>[EEG Analysis] 파이썬 MNE를 활용한 휴지기 뇌파 알파 파워 분석</h3>
+      <p><strong>Background:</strong> 만성 통증 환자에게서 알파파 감소 현상이 나타난다는 기존 논문을 바탕으로 직접 데이터를 검증해 본 프로젝트입니다.</p>
+      <p><strong>Tools:</strong> <span class="tag">Python</span> <span class="tag">MNE-Python</span> <span class="tag">Pandas</span> <span class="tag">Seaborn</span></p>
+      
+      <!-- 프로젝트 결과 이미지 예시 -->
+      <img src="https://via.placeholder.com/600x250?text=EEG+Graph+Image" alt="뇌파 분석 그래프" class="project-img">
+      
+      <p><strong>Takeaway:</strong> 파이썬을 활용한 전처리 및 알파파 스펙트럼 시각화 과정을 직접 구현했습니다.</p>
+    </div>
+  </section>
+
+  <!-- 3. Skills & Tools -->
+  <section>
+    <h2>3. Skills & Tools</h2>
+    <p><strong>Data Analysis & Programming:</strong></p>
+    <span class="tag">Python (Pandas, Seaborn, MNE)</span>
+    <span class="tag">SQL (SQLD)</span>
+    <span class="tag">SPSS / R (사조사 2급)</span>
+    
+    <p style="margin-top: 15px;"><strong>Languages:</strong></p>
+    <span class="tag">English (논문 리딩 가능)</span>
+  </section>
+
+  <!-- 4. Contact -->
+  <section>
+    <h2>4. Contact</h2>
+    <p>📧 Email: your-email@example.com</p>
+    <p>💻 GitHub: <a href="https://github.com/SuMin-7" target="_blank">github.com/SuMin-7</a></p>
+  </section>
+
+  <footer>
+    &copy; 2026 SuMin. All rights reserved.
+  </footer>
+
+</div>
+
 </body>
 </html>
